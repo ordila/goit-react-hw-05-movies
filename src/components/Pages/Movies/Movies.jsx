@@ -1,6 +1,6 @@
 import ListOfFilms from 'components/ListOfFilms/ListOfFilms';
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { getMovieByQuery } from 'services/api';
 
 const Movies = () => {
@@ -27,7 +27,7 @@ const Movies = () => {
       }
     };
     fetch();
-  }, [searchParams]);
+  }, [searchParams, queryValue]);
 
   return (
     <div>

@@ -1,4 +1,3 @@
-import ListOfFilms from 'components/ListOfFilms/ListOfFilms';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { requestTrendMovies } from 'services/api';
@@ -19,7 +18,7 @@ const Home = () => {
       }
     };
     requstFunction();
-  }, []);
+  }, [trendMovies]);
 
   return (
     <ul>

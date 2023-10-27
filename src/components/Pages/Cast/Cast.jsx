@@ -16,7 +16,7 @@ const Cast = () => {
       }
     };
     getCatstFromApi();
-  }, []);
+  }, [movieId]);
 
   return (
     <div>

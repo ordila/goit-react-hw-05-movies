@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Link,
-  Outlet,
-  Route,
-  Routes,
-  useLocation,
-  useParams,
-} from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from 'services/api';
 import styles from './MovieDetailPage.module.css';
-import Cast from 'components/Pages/Cast/Cast';
 
 const MoviesDetail = () => {
   const { state } = useLocation();
-  console.log('state', state);
-  console.log('state', state);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const [infoAboutMovie, setInfoAboutMovie] = useState([]);
@@ -30,7 +21,7 @@ const MoviesDetail = () => {
       }
     };
     getMoreInformationAboutFIlmByID();
-  }, []);
+  }, [movieId]);
 
   const onLinkClick = event => {
     setIsOpen(!isOpen);

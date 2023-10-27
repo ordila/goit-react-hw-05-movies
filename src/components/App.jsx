@@ -1,6 +1,4 @@
-import { NavLink, Route, Routes } from 'react-router-dom';
-import ListOfFilms from './ListOfFilms/ListOfFilms';
-import SearchInput from './SearchInput/SearchInput';
+import { Route, Routes } from 'react-router-dom';
 
 import React from 'react';
 import Home from './Pages/Home/Home';
