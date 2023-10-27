@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { requestTrendMovies } from 'services/api';
 
 const Home = () => {
-  const { pathname } = useLocation();
+  const location = useLocation();
 
   const [trendMovies, setTredMovies] = useState([]);
   useEffect(() => {
@@ -25,7 +25,11 @@ const Home = () => {
       {trendMovies.map(el => {
         return (
           <li key={el.id}>
-            <Link state={pathname} to={`/movies/${el.id}`} key={el.id}>
+            <Link
+              state={{ from: location }}
+              to={`/movies/${el.id}`}
+              key={el.id}
+            >
               {el.title || el.name}
             </Link>
           </li>

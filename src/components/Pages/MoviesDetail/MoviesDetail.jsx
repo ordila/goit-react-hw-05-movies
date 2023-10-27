@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from 'services/api';
 import styles from './MovieDetailPage.module.css';
 
 const MoviesDetail = () => {
-  const [previousPageURL, setPreviousPageURL] = useState('');
-  const { state } = useLocation();
+  const location = useLocation();
+  const backLinkRef = useRef(location?.state?.from ?? '/');
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -13,8 +13,6 @@ const MoviesDetail = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    console.log('previousPageURL', state);
-    setPreviousPageURL(state);
     const getMoreInformationAboutFIlmByID = async () => {
       try {
         const informationAboutMovie = await getMovieById(movieId);
@@ -24,15 +22,14 @@ const MoviesDetail = () => {
       }
     };
     getMoreInformationAboutFIlmByID();
-  }, [movieId, state]);
+  }, [movieId]);
 
   const onLinkClick = event => {
     setIsOpen(!isOpen);
-    console.log('previousPageURL', previousPageURL);
   };
   return (
     <>
-      <Link to={previousPageURL} className={styles.linkToBack}>
+      <Link to={backLinkRef.current} className={styles.linkToBack}>
         Back
       </Link>
       <div className={styles['movie-detail']}>
