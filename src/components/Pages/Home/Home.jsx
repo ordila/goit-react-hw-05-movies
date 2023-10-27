@@ -4,7 +4,7 @@ import { requestTrendMovies } from 'services/api';
 
 const Home = () => {
   const { pathname } = useLocation();
-  console.log('location', pathname);
+
   const [trendMovies, setTredMovies] = useState([]);
   useEffect(() => {
     const requstFunction = async () => {
@@ -31,7 +31,6 @@ const Home = () => {
           </li>
         );
       })}
-      <h1>hi there</h1>
     </ul>
   );
 };

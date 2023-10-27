@@ -4,6 +4,7 @@ import { getMovieById } from 'services/api';
 import styles from './MovieDetailPage.module.css';
 
 const MoviesDetail = () => {
+  const [previousPageURL, setPreviousPageURL] = useState('');
   const { state } = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,8 @@ const MoviesDetail = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
+    console.log('previousPageURL', state);
+    setPreviousPageURL(state);
     const getMoreInformationAboutFIlmByID = async () => {
       try {
         const informationAboutMovie = await getMovieById(movieId);
@@ -21,14 +24,15 @@ const MoviesDetail = () => {
       }
     };
     getMoreInformationAboutFIlmByID();
-  }, [movieId]);
+  }, [movieId, state]);
 
   const onLinkClick = event => {
     setIsOpen(!isOpen);
+    console.log('previousPageURL', previousPageURL);
   };
   return (
     <>
-      <Link to={state} className={styles.linkToBack}>
+      <Link to={previousPageURL} className={styles.linkToBack}>
         Back
       </Link>
       <div className={styles['movie-detail']}>
